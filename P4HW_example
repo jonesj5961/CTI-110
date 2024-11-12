@@ -1,0 +1,29 @@
+# Joseph Jones
+# 11/12/2024
+# P4HW example
+# Example for P4HW
+
+# List of available items(not needed in your HW)
+availableItems =["Litter", "Cat food", "Feather", "Collar", "Toy", "Litter box", "Flea meds", "Treat"]
+
+# Get number of items to purchase
+numItems =int(input("How many items will you purchase? "))
+
+# Empty list to hold valid responses
+cart =[]
+
+# Loop to get the items
+for item in range(numItems):
+    thisItem =input(f"Enter item #{item + 1}: ")
+    # Loop to ensure thisItem is in aavailableItems
+    while thisItem not in availableItems:
+        print(f"{thisItem} is not currently available!")
+        thisItem =input(f"Enter item #{item + 1} again: ")
+    # Add the valid item to the cart
+    cart.append(thisItem)
+
+# Loop to print each item in the cart
+print()
+print("Items we purchased are: ")
+for product in cart:
+    print(product)
