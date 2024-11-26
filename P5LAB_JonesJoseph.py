@@ -77,7 +77,9 @@ def main():
     print(f"You owe ${money_owed:.2f}")
     cash_payed = float(input("How much cash will youu put in? "))
     change = cash_payed - money_owed
-    print(f"The change is ${change:.2f}")
+    print(f"The change is without the formatting is ${change}")
+    change = round(change,2)
+    print(f"The change is ${change}")
     disperse_change(change)
 
 
