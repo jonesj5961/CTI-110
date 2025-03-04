@@ -32,19 +32,21 @@ class Car:
         print(f"The {self.color} {self.make} {self.model} is driven by {self.driver}")
 
     def drive_car(self):
-        self.miles_driven += random.randint(5,self.max_speed) + self.handling
+        self.miles_driven += random.randint(5, self.max_speed) + self.handling
     
     def show_stats(self, miles_to_win):
         print(f"{self.driver}'s car advanced to {self.miles_driven}")
         print()
-        if self.miles_driven > miles_to_win:
+        if self.miles_driven >= miles_to_win:  # Changed to >= to ensure the win is caught
             print(f"{self.driver} won the race!!!")
+            return True  # Indicate that someone won
+        return False
 
     def hit_maxwell(self):
-        hit = random.randint(1,3)
+        hit = random.randint(1, 3)
         if hit == 1:
             print(f"💥💥💥🙀💥💥💥 Maxwell was hit by {self.driver}!")
-            reduce_speed = random.randint(10,20)
+            reduce_speed = random.randint(10, 20)
             self.max_speed -= reduce_speed
             print(f"{self.driver}'s max speed was reduced by {reduce_speed}!")
             print()
@@ -73,12 +75,16 @@ def main():
 
         print()
         # Show the updated status of the car
-        muskCar.show_stats(miles_to_win)
-        bezosCar.show_stats(miles_to_win)
+        if muskCar.show_stats(miles_to_win) or bezosCar.show_stats(miles_to_win):
+            break  # Exit the loop if there's a winner
 
         # Call the hit_maxwell method on both Car objects
         muskCar.hit_maxwell()
         print()
+        bezosCar.hit_maxwell()
+
+if __name__ == "__main__":
+    main()
         bezosCar.hit_maxwell()
 
 if __name__ == "__main__":
